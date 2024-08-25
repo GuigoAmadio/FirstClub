@@ -11,7 +11,7 @@ export default function ClubesCards() {
     <section
       ref={ref}
       id="Clubes"
-      className="flex justify-center items-center space-x-6 scroll-mt-32 mt-20"
+      className="flex flex-wrap justify-center items-center gap-10 scroll-mt-32 mt-20"
     >
       {clubCardsData.map((card, index) => (
         <Card key={index} {...card} isMiddle={index} />

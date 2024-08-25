@@ -12,7 +12,7 @@ export default function Calendario() {
       id="Calendario Olimpico"
       className="flex flex-col items-center mt-20 gap-5 scroll-mt-32 mb-20"
     >
-      <h1 className="text-center text-5xl font-extrabold">
+      <h1 className="text-center text-2xl md:text-5xl font-extrabold">
         Escolha o seu <span className="text-blue-900">Clube</span>
         <br />
         Receba um <span className="text-blue-900">Calendario Olimpico</span>

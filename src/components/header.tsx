@@ -33,10 +33,10 @@ export default function Header() {
   };
   return (
     <header
-      className="z-40 flex justify-around items-center fixed h-auto w-full bg-slate-950 
+      className="z-40 fixed w-full h-auto flex justify-around items-center bg-slate-950 
     dark:bg-gray-950 dark:border-black/40 dark:bg-opacity-75 font-inter"
     >
-      <ul className="flex flex-wrap items-center justify-center px-10 py-5 text-white sm:gap-5 gap-2">
+      <ul className="flex flex-wrap items-center justify-center p-6 gap-3 md:px-10 545px:gap-5 545px:px-18 580px:px-20 695px:px-32">
         {links.map((link) => (
           <motion.li
             className="relative"
