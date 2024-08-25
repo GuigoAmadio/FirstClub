@@ -8,12 +8,14 @@ import { links } from "@/src/lib/data";
 import { useActiveSectionContext } from "@/src/context/active-section-content";
 import { useRouter } from "next/navigation";
 
+type names = "Projeto First" | "Calendario Olimpico" | "Clubes" | "Sobre nos" | "Login";
+
 export default function Header() {
   const { activeSection, setActiveSection, setTimeOfLastClick } =
     useActiveSectionContext();
   const router = useRouter();
 
-  const handleClick = (name: string, hash: string) => {
+  const handleClick = (name: names, hash: string) => {
     if (name === "Sobre nos") {
       setActiveSection(name);
       setTimeOfLastClick(Date.now());
