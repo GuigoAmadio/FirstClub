@@ -18,7 +18,7 @@ const alfa = Alfa_Slab_One({
 });
 
 export const metadata: Metadata = {
-  title: "Food Things",
+  title: "FirstClub",
   description: "Criado por Guigao da Massa",
 };
 
