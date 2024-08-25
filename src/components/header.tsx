@@ -6,25 +6,39 @@ import Link from "next/link";
 import clsx from "clsx";
 import { links } from "@/src/lib/data";
 import { useActiveSectionContext } from "@/src/context/active-section-content";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
-type names = "Projeto First" | "Calendario Olimpico" | "Clubes" | "Sobre nos" | "Login";
+type names =
+  | "Projeto First"
+  | "Calendario Olimpico"
+  | "Clubes"
+  | "Sobre nos"
+  | "Login";
 
 export default function Header() {
   const { activeSection, setActiveSection, setTimeOfLastClick } =
     useActiveSectionContext();
   const router = useRouter();
+  const pathname = usePathname();
 
-  const handleClick = (name: names, hash: string) => {
-    if (name === "Sobre nos") {
-      setActiveSection(name);
-      setTimeOfLastClick(Date.now());
+  const handleClick = (name: names, hash: string, e: React.MouseEvent) => {
+    const GoingToAboutPage = name === "Sobre nos";
+    const isOnAboutPage = pathname === "/about";
+
+    if (
+      (GoingToAboutPage && !isOnAboutPage) ||
+      (!GoingToAboutPage && isOnAboutPage)
+    ) {
+      e.preventDefault();
+    }
+
+    setActiveSection(name);
+    setTimeOfLastClick(Date.now());
+
+    if (GoingToAboutPage) {
       router.push("/about");
-    } else {
+    } else if (isOnAboutPage) {
       router.push(`/${hash}`);
-      setActiveSection(name);
-      setTimeOfLastClick(Date.now());
-
       setTimeout(() => {
         const element = document.getElementById(hash.substring(1));
         if (element) {
@@ -55,10 +69,7 @@ export default function Header() {
                 }
               )}
               href={link.hash}
-              onClick={(e) => {
-                e.preventDefault(); // Previne o comportamento padrão do link
-                handleClick(link.name, link.hash); // Executa a lógica de navegação personalizada
-              }}
+              onClick={(e) => handleClick(link.name, link.hash, e)}
             >
               {link.name}
 
