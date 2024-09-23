@@ -45,12 +45,13 @@ export const Card: React.FC<CardProps> = ({ title, items, isMiddle }) => {
           </li>
         ))}
       </ul>
-      <motion.button
-        className="absolute bottom-10 w-60 bg-neutral-200 text-black py-1 px-4 rounded-lg"
+      <motion.a
+        className="absolute bottom-10 w-60 bg-neutral-200 text-black py-1 px-4 rounded-lg grid place-items-center"
         whileHover={{ scale: 1.1 }}
+        href="https://docs.google.com/forms/d/e/1FAIpQLSctxl4Abx6iUCjJDdk_BEF13UQRzpfaMcTZtbkJ5HEr4H9NwQ/viewform"
       >
         Juntar-se
-      </motion.button>
+      </motion.a>
     </motion.div>
   );
 };

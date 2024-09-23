@@ -50,12 +50,14 @@ export default function Hero() {
         <br /> projetos.
       </h2>
       <div className="flex flex-col items-center gap-5 mt-5 md:mt-10">
-        <button
+        <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLSctxl4Abx6iUCjJDdk_BEF13UQRzpfaMcTZtbkJ5HEr4H9NwQ/viewform"
           className="w-auto h-auto bg-white rounded-xl text-black font-bold px-4 py-2
-        text-xs md:text-sm"
+        text-xs md:text-sm
+        transition duration-300 hover:scale-105"
         >
           Torne-se um firster
-        </button>
+        </a>
         <div className="flex flex-col items-center">
           <p>Saiba mais</p>
           <BiChevronDown />

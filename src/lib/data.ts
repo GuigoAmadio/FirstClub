@@ -6,6 +6,7 @@ import parede from "@/public/parede.svg";
 import threemen from "@/public/threemen.png";
 import pergunta from "@/public/pergunta.png";
 import maoRobo from "@/public/maoRobo.png";
+import { title } from "process";
 
 export const links = [
   {
