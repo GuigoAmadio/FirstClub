@@ -27,7 +27,7 @@ export const sendEmail = async (email: string) => {
     secure: true,
     auth: {
       user: "amadio.guillermo@gmail.com", // Seu e-mail
-      pass: "vkno ebjn akyg xrtr", // Sua senha ou chave de aplicativo
+      pass: "", // Sua senha ou chave de aplicativo
     },
   });
 
