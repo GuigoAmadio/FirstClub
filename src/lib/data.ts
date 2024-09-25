@@ -59,21 +59,21 @@ export const clubCardsData = [
 export const squares = [
   {
     icon: livro,
-    title: "Manifest",
+    title: "Manifesto",
     content:
-      "Stay on top of your growing company by making it easy to search, and get to know, your teammates.",
+      "Explore o manifesto que guia nossas ações e define os princípios fundamentais da nossa comunidade. Entenda os nossos valores e compromissos.",
   },
   {
     icon: regulamento,
     title: "Regulamento dos Clubes",
     content:
-      "Keep your visuals consistently on-brand with easily accessible colors, icons, screenshots and more, for the whole team.",
+      "Leia as regras e diretrizes que garantem o bom funcionamento dos clubes e asseguram uma experiência justa e organizada para todos os membros. ",
   },
   {
     icon: report,
-    title: "Report bugs",
+    title: "Reclamações/Ajuda",
     content:
-      "Set up template bug report forms to give timely and actionable feedback on features and projects in development.",
+      "Encontre soluções para suas dúvidas ou problemas. Se você tiver uma reclamação ou precisar de assistência, estaremos prontos para oferecer suporte.",
   },
 ] as const;
 
