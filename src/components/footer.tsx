@@ -1,9 +1,5 @@
 "use client";
-import {
-  PiInstagramLogoFill,
-  PiLinkedinLogoFill,
-  PiTiktokLogoFill,
-} from "react-icons/pi";
+import { PiInstagramLogoFill } from "react-icons/pi";
 import { RiSendPlaneFill, RiWhatsappFill } from "react-icons/ri";
 import { sendEmail } from "../lib/actions";
 import { useState } from "react";
@@ -30,28 +26,26 @@ export default function Footer() {
               Inscreva-se para receber nossas novidades{" "}
               <span className="text-zinc-400">Exclusivas</span>
             </h1>
-            <div
-              className="flex items-center justify-between 
-              mt-2 px-2 w-40 sm:w-64 h-8 rounded-md border-[1px] border-zinc-400"
+            <form
+              onSubmit={handleSubmit}
+              className="flex items-center justify-between mt-2 px-2 w-40 sm:w-64 h-8 rounded-md border-[1px] border-zinc-400"
             >
-              <form onSubmit={handleSubmit}>
-                <input
-                  name="email"
-                  type="email"
-                  required
-                  placeholder="amadio@gmail.com"
-                  className="font-semibold text-zinc-400"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)} // Atualiza o estado com o valor do e-mail
-                />
-                <button
-                  type="submit"
-                  className="w-6 h-5 rounded-md bg-zinc-600 grid place-items-center"
-                >
-                  Enviar
-                </button>
-              </form>
-            </div>
+              <input
+                name="email"
+                type="email"
+                required
+                placeholder="amadio@gmail.com"
+                className="font-semibold text-zinc-400 w-full bg-transparent"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} // Atualiza o estado com o valor do e-mail
+              />
+              <button
+                type="submit"
+                className="w-6 h-5 rounded-md bg-zinc-600 grid place-items-center"
+              >
+                <RiSendPlaneFill />
+              </button>
+            </form>
           </div>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 ml-6 sm:ml-0 gap-10 text-zinc-400 text-xs font-semibold">

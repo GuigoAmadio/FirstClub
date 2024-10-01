@@ -1,5 +1,5 @@
-
-import React, { useState } from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import {
   format,
   startOfMonth,
@@ -12,22 +12,35 @@ import {
 } from "date-fns";
 import { ptBR } from "date-fns/locale"; // Usando 'ptBR' para o português.
 import EventModal from "./EventModal"; // Importando o modal
-import { useCalendarData } from "../../lib/actions";
 
 type EventDetails = {
   summary: string;
   location?: string;
   description?: string;
+  start: {
+    dateTime?: string;
+    date?: string;
+  };
+  end: {
+    dateTime?: string;
+    date?: string;
+  };
+  [key: string]: any;
 };
 
-const Calendar = () => {
+// Agora o Calendar recebe os eventos como prop
+const Calendar = ({ events }: { events: EventDetails[] }) => {
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+  });
+
   const [currentDate, setCurrentDate] = useState(new Date());
 
-  // Alterado para ser uma lista de eventos
   const [selectedEvents, setSelectedEvents] = useState<EventDetails[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false); // Estado do modal
-
-  const events = useCalendarData();
 
   // Funções para navegar entre os meses
   const prevMonth = () => setCurrentDate(subMonths(currentDate, 1));
@@ -43,22 +56,26 @@ const Calendar = () => {
 
   // Função para encontrar eventos no dia específico
   const findEventsForDay = (day: Date) => {
-    return events.filter((event) => {
-      const eventDate = new Date(event.start.date || event.start.dateTime);
-      return format(eventDate, "yyyy-MM-dd") === format(day, "yyyy-MM-dd");
+    const dayFormatted = format(day, "yyyy-MM-dd");
+    const matchingEvents = events.filter((event) => {
+      const eventDateStr = event.start.date || event.start.dateTime || "";
+      const eventDate = new Date(eventDateStr);
+      return format(eventDate, "yyyy-MM-dd") === dayFormatted;
     });
+
+    return matchingEvents;
   };
 
   // Abrir o modal com todos os eventos do dia
   const openModal = (dayEvents: EventDetails[]) => {
-    setSelectedEvents(dayEvents); // Agora recebe a lista de eventos
+    setSelectedEvents(dayEvents);
     setIsModalOpen(true);
   };
 
   // Fechar modal
   const closeModal = () => {
     setIsModalOpen(false);
-    setSelectedEvents([]); // Reseta a lista de eventos selecionados
+    setSelectedEvents([]);
   };
 
   return (
@@ -92,9 +109,12 @@ const Calendar = () => {
             return (
               <div
                 key={index}
-                className={`w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 900px:h-24 900px:w-24 border rounded-xl flex flex-col items-center justify-center 900px:justify-start 900px:items-start md:p-2 shadow-md relative
+                className={`truncate w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 900px:h-24 
+                  900px:w-24 border rounded-xl flex flex-col items-center 
+                  justify-center 900px:justify-start 900px:items-start md:p-2 
+                  shadow-md relative
                 ${
-                  dayEvents.length > 0 && window.innerWidth < 900
+                  dayEvents.length > 0 && screenWidth < 900
                     ? "bg-blue-300"
                     : dayEvents.length > 0
                     ? "cursor-pointer bg-white hover:scale-110 transition duration-200" // Aplica um background diferente se houver eventos
@@ -114,12 +134,12 @@ const Calendar = () => {
                 </span>
 
                 {/* Exibindo eventos no dia */}
-                {dayEvents.length > 0 && window.innerWidth >= 900 && (
-                  <div className="text-xs text-blue-500">
+                {dayEvents.length > 0 && screenWidth >= 900 && (
+                  <div className="text-xs text-blue-600 mt-1">
                     {dayEvents.map((event, i) => (
-                      <div key={i}>
+                      <div key={i} className="">
+                        {/* Truncate vai cortar o texto longo */}
                         <strong>{event.summary}</strong>
-                        <p>{event.location}</p>
                       </div>
                     ))}
                   </div>

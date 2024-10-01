@@ -29,6 +29,17 @@
     overflow: hidden;
   }
 
+  input {
+    outline: none;
+    border: none;
+  }
+
+  input:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+
   .gradient-border::before {
     content: "";
     position: absolute;
@@ -45,5 +56,14 @@
 
   .finalButton {
     background: linear-gradient(90deg, #135d9a, #073f99, #001297);
+  }
+
+  .truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  li.bg-white {
+    min-height: 100px; /* Defina uma altura mínima para as caixas */
   }
 }
